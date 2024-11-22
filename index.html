@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Result and point</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <header class="header">
+    <h2 class="header-title">
+      Результат и точка
+    </h2>
+
+    <div class="header-links">
+      <span class="header-links__item" id="mainPage">Главная</span>
+      <span class="header-links__item" id="infoPage">Сведения об образовательной организации</span>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container main-wrapper">
+      <h1 class="main-title">Результат и точка</h1>
+      <p class="main-text">
+        <b>Результат</b> — это онлайн школа, предлагающая разнообразные курсы по самым актуальным направлениям. Мы обучаем в таких областях, как программирование, дизайн и языки. Наши опытные преподаватели создают интерактивные и доступные программы, которые помогут вам развить необходимые навыки и достичь успеха. Учитесь в удобное время и получайте сертификаты, подтверждающие ваши достижения. <b>Точка.</b>
+      </p>
+    </div>
+
+    <div class="container main-info hidden">
+      <div class="info-list">
+        <ul>
+          <li id="registration">Информация о государственной регистрации в качестве индивидуального предпринимателя</li>
+          <li id="level">Уровень профессионального образования</li>
+          <li id="expirience">Стаж преподавания</li>
+          <li id="programms">Реализуемые образовательные программы</li>
+        </ul>
+      </div>
+
+      <div class="info-description" id="info-description">
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const listItems = document.querySelectorAll('.info-list li')
+    const infoDescription = document.getElementById('info-description')
+    const infoData = {
+      registration: " Индивидуальный предприниматель Кривов Иван Юрьевич, ИНН: 643205853617, ОГРНИП: 324645700114613, запись о государственной регистрации физического лица в качестве индивидуального предпринимателя от 19.11.2024, наименование регистрирующего органа: МРИ ФНС № 22 по Саратовской области",
+      level: "3 курс Саратовского государственного университета",
+      expirience: "Стаж преподавания: более 5 лет.",
+      programms:`
+        <ul>
+          <li><a href="" target="_blank">Frontend-разработчик уровень «Старт»</a></li>
+          <li><a href="" target="_blank">JavaScript-разработчик</a></li>
+          <li><a href="" target="_blank">Vue.js</a></li>
+          <li><a href="" target="_blank">React.js</a></li>
+        </ul>
+      `
+    }
+    const mainWrapper = document.querySelector('.main-wrapper')
+    const mainInfo = document.querySelector('.main-info')
+
+      document.getElementById('mainPage').addEventListener('click', () => {
+      mainWrapper.classList.remove('hidden')
+      mainInfo.classList.add('hidden')
+    })
+
+    document.getElementById('infoPage').addEventListener('click', () => {
+      mainWrapper.classList.add('hidden')
+      mainInfo.classList.remove('hidden')
+    })
+
+    listItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const infoText = item.id
+
+        infoDescription.innerHTML = infoData[infoText]
+        listItems.forEach(i => i.classList.remove('active'))
+        item.classList.add('active')
+      })
+    })
+  </script>
+</body>
+</html>
